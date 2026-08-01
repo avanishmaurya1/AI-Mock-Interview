@@ -46,7 +46,7 @@ function Interview() {
 
       // IMPORTANT:
       // Backend endpoint = POST /api/interview/create
-      const res = await API.post("/interview/create", formData);
+      const res = await API.post("/interview/", formData);
 
       if (!res.data?.interview) {
         throw new Error("Invalid interview response.");
