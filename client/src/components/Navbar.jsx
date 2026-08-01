@@ -1,4 +1,4 @@
- import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
 
 function Navbar() {
@@ -26,12 +26,13 @@ function Navbar() {
           to="/"
           className="text-xl font-bold tracking-tight text-white transition hover:text-blue-400 sm:text-2xl"
         >
-         AI Mock Interview  
+          AI Mock Interview
         </Link>
 
         {/* Navigation */}
         <div className="flex items-center gap-3 sm:gap-6">
 
+          {/* Home */}
           <Link
             to="/"
             className="text-sm font-medium text-slate-400 transition hover:text-blue-400 sm:text-base"
@@ -41,27 +42,23 @@ function Navbar() {
 
           {token ? (
             <>
-            <Link
-  to="/dashboard"
-  className="text-sm font-medium text-slate-400 transition hover:text-blue-400 sm:text-base"
->
-  Dashboard
-</Link>
+              {/* Dashboard */}
+              <Link
+                to="/dashboard"
+                className="text-sm font-medium text-slate-400 transition hover:text-blue-400 sm:text-base"
+              >
+                Dashboard
+              </Link>
 
-<Link
-  to="/interview"
-  className="text-sm font-medium text-slate-400 transition hover:text-blue-400 sm:text-base"
->
-  Interview
-</Link>
+              {/* Interview */}
+              <Link
+                to="/interview"
+                className="text-sm font-medium text-slate-400 transition hover:text-blue-400 sm:text-base"
+              >
+                Interview
+              </Link>
 
-<Link
-  to="/profile"
-  className="text-sm font-medium text-slate-400 transition hover:text-blue-400 sm:text-base"
->
-  Profile
-</Link>
-
+              {/* Profile - only once */}
               <Link
                 to="/profile"
                 className="text-sm font-medium text-slate-400 transition hover:text-blue-400 sm:text-base"
@@ -69,6 +66,7 @@ function Navbar() {
                 Profile
               </Link>
 
+              {/* Logout */}
               <button
                 onClick={handleLogout}
                 className="rounded-lg border border-slate-700 bg-slate-900 px-3 py-2 text-sm font-medium text-slate-300 transition hover:border-red-500/40 hover:bg-red-500/10 hover:text-red-400 sm:px-4"
@@ -78,6 +76,7 @@ function Navbar() {
             </>
           ) : (
             <>
+              {/* Login */}
               <Link
                 to="/login"
                 className="text-sm font-medium text-slate-400 transition hover:text-blue-400 sm:text-base"
@@ -85,6 +84,7 @@ function Navbar() {
                 Login
               </Link>
 
+              {/* Register */}
               <Link
                 to="/register"
                 className="rounded-lg bg-blue-600 px-4 py-2 text-sm font-semibold text-white shadow-lg shadow-blue-600/20 transition hover:bg-blue-500"
@@ -93,6 +93,7 @@ function Navbar() {
               </Link>
             </>
           )}
+
         </div>
       </div>
     </nav>
