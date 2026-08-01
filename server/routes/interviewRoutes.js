@@ -2,14 +2,15 @@
 const router = express.Router();
 
 const protect = require("../middleware/authMiddleware");
+const upload = require("../middleware/uploadMiddleware");
 
 const {
   createInterview,
+  createResumeInterview,
   getInterview,
   submitAnswer,
   getMyInterviews,
 } = require("../controllers/interviewController");
-
 
 // ======================
 // Get All User Interviews
@@ -20,9 +21,8 @@ router.get(
   getMyInterviews
 );
 
-
 // ======================
-// Create New Interview
+// Create Normal Interview
 // ======================
 router.post(
   "/",
@@ -30,6 +30,15 @@ router.post(
   createInterview
 );
 
+// ======================
+// Create Resume Interview
+// ======================
+router.post(
+  "/resume",
+  protect,
+  upload.single("resume"),
+  createResumeInterview
+);
 
 // ======================
 // Get Single Interview
@@ -40,15 +49,13 @@ router.get(
   getInterview
 );
 
-
 // ======================
-// Submit Answer & AI Evaluation
+// Submit Answer
 // ======================
 router.post(
   "/:id/answer",
   protect,
   submitAnswer
 );
-
 
 module.exports = router;
