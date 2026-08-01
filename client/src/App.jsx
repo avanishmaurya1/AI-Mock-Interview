@@ -1,4 +1,9 @@
- import { BrowserRouter, Routes, Route } from "react-router-dom";
+ import Profile from "./pages/Profile";
+ import {
+  BrowserRouter,
+  Routes,
+  Route,
+} from "react-router-dom";
 
 import Navbar from "./components/Navbar";
 import ProtectedRoute from "./components/ProtectedRoute";
@@ -6,18 +11,24 @@ import ProtectedRoute from "./components/ProtectedRoute";
 import Home from "./pages/Home";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
+import ForgotPassword from "./pages/ForgotPassword";
+import ResetPassword from "./pages/ResetPassword";
+
 import Dashboard from "./pages/Dashboard";
 import Interview from "./pages/Interview";
 import InterviewDetails from "./pages/InterviewDetails";
-import Profile from "./pages/Profile";
 
 function App() {
   return (
     <BrowserRouter>
+
       <Navbar />
 
       <Routes>
-        {/* ================= PUBLIC ROUTES ================= */}
+
+        {/* =========================
+            PUBLIC ROUTES
+        ========================= */}
 
         <Route
           path="/"
@@ -34,51 +45,67 @@ function App() {
           element={<Register />}
         />
 
-        {/* ================= PROTECTED ROUTES ================= */}
-
         <Route
-          path="/dashboard"
-          element={
-            <ProtectedRoute>
-              <Dashboard />
-            </ProtectedRoute>
-          }
+          path="/forgot-password"
+          element={<ForgotPassword />}
         />
 
         <Route
-          path="/interview"
-          element={
-            <ProtectedRoute>
-              <Interview />
-            </ProtectedRoute>
-          }
+          path="/reset-password"
+          element={<ResetPassword />}
         />
 
-        <Route
-          path="/interview/:id"
-          element={
-            <ProtectedRoute>
-              <InterviewDetails />
-            </ProtectedRoute>
-          }
-        />
+        {/* =========================
+            PROTECTED ROUTES
+        ========================= */}
 
-        <Route
-          path="/profile"
-          element={
-            <ProtectedRoute>
-              <Profile />
-            </ProtectedRoute>
-          }
-        />
+ <Route
+  path="/dashboard"
+  element={
+    <ProtectedRoute>
+      <Dashboard />
+    </ProtectedRoute>
+  }
+/>
 
-        {/* ================= FALLBACK ================= */}
+<Route
+  path="/interview"
+  element={
+    <ProtectedRoute>
+      <Interview />
+    </ProtectedRoute>
+  }
+/>
+
+<Route
+  path="/interview/:id"
+  element={
+    <ProtectedRoute>
+      <InterviewDetails />
+    </ProtectedRoute>
+  }
+/>
+
+<Route
+  path="/profile"
+  element={
+    <ProtectedRoute>
+      <Profile />
+    </ProtectedRoute>
+  }
+/>
+
+        {/* =========================
+            FALLBACK
+        ========================= */}
 
         <Route
           path="*"
           element={<Home />}
         />
+
       </Routes>
+
     </BrowserRouter>
   );
 }

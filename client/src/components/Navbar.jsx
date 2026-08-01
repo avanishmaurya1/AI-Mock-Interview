@@ -1,12 +1,18 @@
-import { Link, useNavigate } from "react-router-dom";
-import { useState } from "react";
+ import { Link, useLocation, useNavigate } from "react-router-dom";
+import { useEffect, useState } from "react";
 
 function Navbar() {
   const navigate = useNavigate();
+  const location = useLocation();
 
   const [token, setToken] = useState(
     localStorage.getItem("token")
   );
+
+  // Update navbar whenever route changes
+  useEffect(() => {
+    setToken(localStorage.getItem("token"));
+  }, [location]);
 
   const handleLogout = () => {
     localStorage.removeItem("token");
@@ -14,7 +20,7 @@ function Navbar() {
 
     setToken(null);
 
-    navigate("/login");
+    navigate("/login", { replace: true });
   };
 
   return (
@@ -58,7 +64,7 @@ function Navbar() {
                 Interview
               </Link>
 
-              {/* Profile - only once */}
+              {/* Profile */}
               <Link
                 to="/profile"
                 className="text-sm font-medium text-slate-400 transition hover:text-blue-400 sm:text-base"
