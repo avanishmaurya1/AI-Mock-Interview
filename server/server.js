@@ -17,28 +17,10 @@ const app = express();
 // CORS Configuration
 // ======================
 
-const allowedOrigins = [
-  "http://localhost:5173",
-  "https://ai-mock-interview-murex-six.vercel.app",
-  process.env.CLIENT_URL,
-].filter(Boolean);
-
 app.use(
   cors({
-    origin: (origin, callback) => {
-      // Allow requests without an Origin header
-      if (!origin) {
-        return callback(null, true);
-      }
-
-      if (allowedOrigins.includes(origin)) {
-        return callback(null, true);
-      }
-
-      return callback(
-        new Error(`CORS blocked for origin: ${origin}`)
-      );
-    },
+    origin: true,
+    credentials: true,
 
     methods: [
       "GET",
@@ -53,8 +35,6 @@ app.use(
       "Content-Type",
       "Authorization",
     ],
-
-    credentials: true,
   })
 );
 
@@ -97,6 +77,7 @@ app.use((req, res) => {
   res.status(404).json({
     success: false,
     message: "API route not found",
+    path: req.originalUrl,
   });
 });
 
