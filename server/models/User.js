@@ -22,14 +22,21 @@ const userSchema = new mongoose.Schema(
       minlength: 6,
       select: false,
     },
+
+    resetPasswordToken: {
+      type: String,
+      default: null,
+    },
+
+    resetPasswordExpires: {
+      type: Date,
+      default: null,
+    },
   },
   {
     timestamps: true,
   }
 );
 
-
-module.exports = mongoose.model(
-  "User",
-  userSchema
-);
+module.exports = mongoose.model("User", userSchema);
+'@ | Set-Content ".\server\models\User.js"
